@@ -53,7 +53,7 @@ public class ProductController {
             product.setId(id);
             return "update-product";
         }
-        productService.updateProduct(product.getId(), product.getName(), product.getDescription(), product.getProductCategory(),product.getPrice());
+        productService.updateProduct(product.getId(), product.getName(), product.getDescription(), product.getProductCategory(), product.getPrice());
         return "redirect:/products";
     }
 

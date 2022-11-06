@@ -28,12 +28,14 @@ public class UserService {
         LOG.info("Added user to table with name = {}", user.getName());
     }
 
-    public void addUsers(ArrayList<User> users) {
+    public void addUsers(List<User> users) {
         userRepo.saveAll(users);
     }
-    public List<User> getAllUsers(){
-        return StreamSupport.stream(userRepo.findAll().spliterator(),false).collect(Collectors.toList());
+
+    public List<User> getAllUsers() {
+        return StreamSupport.stream(userRepo.findAll().spliterator(), false).collect(Collectors.toList());
     }
+
     public User getUserById(long id) {
         return userRepo.findUserById(id);
     }
@@ -42,16 +44,13 @@ public class UserService {
         return userRepo.findUserByName(name);
     }
 
-    public List<User> getUsers(long id) {
-        return userRepo.findByIdContaining(id);
-    }
-
     public User getUserBySurname(String surname) {
         return userRepo.findUserBySurname(surname);
     }
 
-    public void deleteUserById(long id){
-        userRepo.deleteById(id);LOG.info("Removed user with id = {}", id);
+    public void deleteUserById(long id) {
+        userRepo.deleteById(id);
+        LOG.info("Removed user with id = {}", id);
     }
 
     public void updateUser(long id, String name, String surname, String patronynic, UserRole userRole) {
@@ -61,7 +60,8 @@ public class UserService {
         user.setPatronymic(patronynic);
         user.setUserRole(userRole);
         userRepo.save(user);
-        userRepo.deleteById(id);LOG.info("Updated user with id = {}", id);
+        userRepo.deleteById(id);
+        LOG.info("Updated user with id = {}", id);
     }
 
 }

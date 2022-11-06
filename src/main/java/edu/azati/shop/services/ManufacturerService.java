@@ -21,6 +21,7 @@ public class ManufacturerService {
     @Autowired
     ProductRepo productRepo;
     private static final Logger LOG = LoggerFactory.getLogger(ManufacturerService.class);
+
     public void addManufacturer(Manufacturer manufacturer) {
         manufacturerRepo.save(manufacturer);
     }
@@ -29,17 +30,19 @@ public class ManufacturerService {
         Manufacturer manufacturer = getManufacturerById(id);
         product.setManufacturer(manufacturer);
         productRepo.save(product);
-
     }
 
-    public void addStores(ArrayList<Manufacturer> manufacturers) {
+    public void addManufacturers(List<Manufacturer> manufacturers) {
         manufacturerRepo.saveAll(manufacturers);
     }
 
     public Manufacturer getManufacturerById(long id) {
         LOG.info("Received manufacturer with id = {}", id);
         return manufacturerRepo.findManufacturerById(id);
+    }
 
+    public Manufacturer getManufacturerByName(String name) {
+        return manufacturerRepo.findManufacturerByName(name);
     }
 
     public void updateManufacturer(long id, String name) {
@@ -56,5 +59,9 @@ public class ManufacturerService {
     public void deleteManufacturerById(long id) {
         manufacturerRepo.deleteById(id);
         LOG.info("Remote manufacturer with id = {}", id);
+    }
+
+    public List<Product> getManufacturerProducts(long id) {
+        return getManufacturerById(id).getProducts();
     }
 }

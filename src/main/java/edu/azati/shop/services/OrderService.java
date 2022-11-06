@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -16,7 +17,7 @@ public class OrderService {
         orderRepo.save(order);
     }
 
-    public void addOrders(ArrayList<Order> orders) {
+    public void addOrders(List<Order> orders) {
         orderRepo.saveAll(orders);
     }
 

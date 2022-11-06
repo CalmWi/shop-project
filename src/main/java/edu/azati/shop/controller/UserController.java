@@ -20,11 +20,13 @@ public class UserController {
     public String showUser(Model model) {
         return "index";
     }
+
     @GetMapping("/users")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
+
     /*@PostMapping("/send-user")
     public String sendMessage(@Validated User user, BindingResult result, Model model) {
         if (result.hasErrors()) {

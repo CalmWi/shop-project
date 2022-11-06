@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Document(collation = "photos")
+@Document(collection = "photo")
 public class Photo {
     @Id
     private String id;

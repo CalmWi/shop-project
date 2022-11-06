@@ -19,7 +19,7 @@ public class ProductService {
     @Autowired
     ProductRepo productRepo;
 
-    public void addProductToStore(Store store, Product product) {
+/*    public void addProductToStore(Store store, Product product) {
         store.getProducts().add(product);
     }
 
@@ -37,14 +37,20 @@ public class ProductService {
 
     public void addProductToManufacturer(Manufacturer manufacturer, Product product) {
         productRepo.save(product);
-    }
+    }*/
 
     public Product getProductById(long id) {
         return productRepo.findProductById(id);
     }
+
     public void addProduct(Product product) {
         productRepo.save(product);
     }
+
+    public void addProducts(List<Product> products) {
+        productRepo.saveAll(products);
+    }
+
     public void updateProduct(long id, String name, String description, ProductCategory productCategory, double price) {
         Product product = getProductById(id);
         product.setName(name);
@@ -53,12 +59,12 @@ public class ProductService {
         product.setPrice(price);
         productRepo.save(product);
     }
+
     public void deleteProductById(long id) {
         productRepo.deleteById(id);
     }
+
     public List<Product> getAllProducts() {
         return StreamSupport.stream(productRepo.findAll().spliterator(), false).collect(Collectors.toList());
     }
-
-
 }

@@ -66,7 +66,7 @@ public class ManufacturerController {
 
     @GetMapping("/show-manufacturer-products/{id}")
     public String showManufacturerProducts(@PathVariable("id") long id, Model model) {
-        List<Product> products = manufacturerService.getManufacturerById(id).getProducts();
+        List<Product> products = manufacturerService.getManufacturerProducts(id);
         model.addAttribute("mproducts", products);
         return "products";
     }

@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ManufacturerRepo extends CrudRepository<Manufacturer, Long> {
     Manufacturer findManufacturerById(long id);
+    Manufacturer findManufacturerByName(String name);
     void deleteById(long id);
 
 }

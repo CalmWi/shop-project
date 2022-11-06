@@ -14,7 +14,5 @@ public interface UserRepo extends CrudRepository<User, Long> {
 
     User findUserBySurname(String surname);
 
-    List<User> findByIdContaining(long id);
-
     void deleteById(long id);
 }

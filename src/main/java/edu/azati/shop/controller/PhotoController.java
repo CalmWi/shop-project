@@ -28,23 +28,23 @@ public class PhotoController {
     public String addPhoto(@RequestParam("title") String title,
                            @RequestParam("image") MultipartFile image, Model model)
             throws IOException {
-        String id = photoService.addPhoto(title, image);
-        return "redirect:/photos/" + title;
+        photoService.addPhoto(title, image);
+        return "redirect:/photo";
     }
 
-    @GetMapping("/photos/{title}")
+/*    @GetMapping("/photos/{title}")
     public String getPhotoByTitle(@PathVariable String title, Model model) {
         Photo photo = photoService.getPhoto(title);
         model.addAttribute("image",
                 Base64.getEncoder().encodeToString(photo.getImage().getData()));
         return "photos";
-    }
+    }*/
+
     @GetMapping("/image/display/{title}")
     @ResponseBody
     public void showImage(@PathVariable("title") String title, HttpServletResponse response)
             throws ServletException, IOException {
-        //Photo photo = photoService.getPhoto(title);
-        Photo photo = photoService.getById("636257f3e76e29628e19204f");
+        Photo photo = photoService.getPhoto("header");
         response.setContentType("image/jpg");
         response.getOutputStream().write(photo.getImage().getData());
         response.getOutputStream().close();

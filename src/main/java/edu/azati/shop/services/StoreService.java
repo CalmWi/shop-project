@@ -28,7 +28,7 @@ public class StoreService {
         storeRepo.save(store);
     }
 
-    public void addStores(ArrayList<Store> stores) {
+    public void addStores(List<Store> stores) {
         storeRepo.saveAll(stores);
     }
 
@@ -45,6 +45,7 @@ public class StoreService {
     public Store getStoreById(long id) {
         return storeRepo.findById(id);
     }
+
     public void addProductToStore(long id, Product product) {
         Store store = getStoreById(id);
         product.setStore(store);
