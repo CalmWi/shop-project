@@ -24,7 +24,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(name = "paymentType")
     private PaymentType paymentType;
-    @OneToMany
-    @JoinColumn(name = "product_id")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Product> products = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

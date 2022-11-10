@@ -34,7 +34,6 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "userRole")
     private UserRole userRole;
-    @OneToMany
-    @JoinColumn(name = "order_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Order> orders = new ArrayList<>();
 }
