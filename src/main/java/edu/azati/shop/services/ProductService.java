@@ -1,9 +1,6 @@
 package edu.azati.shop.services;
 
-import edu.azati.shop.entity.Manufacturer;
-import edu.azati.shop.entity.Order;
-import edu.azati.shop.entity.Product;
-import edu.azati.shop.entity.Store;
+import edu.azati.shop.entity.*;
 import edu.azati.shop.enums.ProductCategory;
 import edu.azati.shop.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +38,10 @@ public class ProductService {
 
     public Product getProductById(long id) {
         return productRepo.findProductById(id);
+    }
+
+    public Product getProductByName(String name) {
+        return productRepo.findProductsByName(name);
     }
 
     public void addProduct(Product product) {

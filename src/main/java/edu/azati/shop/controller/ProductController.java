@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public String addProduct(@Validated Product product, BindingResult result, Model model) {
+    public String addProduct(@Validated Product product, BindingResult result) {
         if (result.hasErrors()) {
             return "add-product";
         }
@@ -58,10 +58,16 @@ public class ProductController {
     }
 
     @GetMapping("/delete-product/{id}")
-    public String deleteProduct(@PathVariable("id") long id, Model model) {
+    public String deleteProduct(@PathVariable("id") long id) {
         Product product = productService.getProductById(id);
         productService.deleteProductById(product.getId());
         return "redirect:/products";
     }
 
+    @GetMapping("/get-product/{name}")
+    public String getProduct(@PathVariable("name") String name, Model model) {
+        Product product = productService.getProductByName(name);
+        model.addAttribute("product", product);
+        return "product";
+    }
 }
