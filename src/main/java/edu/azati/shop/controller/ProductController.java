@@ -1,6 +1,7 @@
 package edu.azati.shop.controller;
 
 import edu.azati.shop.entity.Product;
+import edu.azati.shop.services.OrderService;
 import edu.azati.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -17,6 +18,8 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductService productService;
+    @Autowired
+    OrderService orderService;
 
     @GetMapping("/products")
     public String showProducts(Model model) {
@@ -48,7 +51,7 @@ public class ProductController {
     }
 
     @PostMapping("/update-product/{id}")
-    public String updateProduct(@PathVariable("id") long id, @Validated Product product, BindingResult result, Model model) {
+    public String updateProduct(@PathVariable("id") long id, @Validated Product product, BindingResult result) {
         if (result.hasErrors()) {
             product.setId(id);
             return "update-product";
@@ -69,5 +72,12 @@ public class ProductController {
         Product product = productService.getProductByName(name);
         model.addAttribute("product", product);
         return "product";
+    }
+
+    @GetMapping("/add-product-to-order/{id}")
+    public String addProductToOrder(@PathVariable("id") long id) {
+        Product product = productService.getProductById(id);
+        orderService.addProductToOrder(1, product);
+        return "redirect:/products";
     }
 }
