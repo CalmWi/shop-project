@@ -20,7 +20,7 @@ public class ManufacturerController {
     ManufacturerService manufacturerService;
 
     @GetMapping("/manufacturers")
-    public String showManufacturer(Model model) {
+    public String showManufacturers(Model model) {
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
         return "manufacturers";
     }
@@ -67,7 +67,7 @@ public class ManufacturerController {
     @GetMapping("/show-manufacturer-products/{id}")
     public String showManufacturerProducts(@PathVariable("id") long id, Model model) {
         List<Product> products = manufacturerService.getManufacturerProducts(id);
-        model.addAttribute("mproducts", products);
+        model.addAttribute("products", products);
         return "products";
     }
 }
