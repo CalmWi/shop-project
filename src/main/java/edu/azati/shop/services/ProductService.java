@@ -68,4 +68,8 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return StreamSupport.stream(productRepo.findAll().spliterator(), false).collect(Collectors.toList());
     }
+
+    public List<Product> getAllProductsByCategory(String category) {
+        return productRepo.findAllByProductCategory(ProductCategory.valueOf(category));
+    }
 }

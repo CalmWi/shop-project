@@ -1,6 +1,7 @@
 package edu.azati.shop.controller;
 
 import edu.azati.shop.entity.Product;
+import edu.azati.shop.enums.ProductCategory;
 import edu.azati.shop.services.OrderService;
 import edu.azati.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,16 @@ public class ProductController {
     public String showProducts(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
+        model.addAttribute("categories", ProductCategory.values());
         return "products";
     }
-
+    @GetMapping("/get-products-category/{category}")
+    public String showProductsByCategory(@PathVariable("category") String category,Model model) {
+        List<Product> products = productService.getAllProductsByCategory(category);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", ProductCategory.values());
+        return "products";
+    }
     @GetMapping("/signup-product")
     public String showSignUpForm(Product product) {
         return "add-product";
