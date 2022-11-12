@@ -1,6 +1,7 @@
 package edu.azati.shop.controller;
 
 import edu.azati.shop.entity.Product;
+import edu.azati.shop.enums.ProductCategory;
 import edu.azati.shop.services.JasperService;
 import edu.azati.shop.services.OrderService;
 import net.sf.jasperreports.engine.*;
@@ -39,6 +40,7 @@ public class OrderController {
     public String showOrderProducts(@PathVariable("id") long id, Model model) {
         List<Product> products = orderService.getOrderProducts(id);
         model.addAttribute("products", products);
+        model.addAttribute("categories", ProductCategory.values());
         return "products";
     }
 }

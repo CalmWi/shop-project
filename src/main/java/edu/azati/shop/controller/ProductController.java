@@ -75,9 +75,9 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @GetMapping("/get-product/{name}")
-    public String getProduct(@PathVariable("name") String name, Model model) {
-        Product product = productService.getProductByName(name);
+    @GetMapping("/get-product/{id}")
+    public String getProduct(@PathVariable("id") long id, Model model) {
+        Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         return "product";
     }

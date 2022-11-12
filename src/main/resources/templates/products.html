@@ -51,7 +51,7 @@
                     <img class="img-fluid" th:src="@{${'/image/display/'+ product.photoTitle}}"/>
                 </div>
                 <div class="d-flex flex-column p-3 justify-content-center align-items-center">
-                    <a style="text-decoration: none;" th:href="@{/get-product/{name}(name=${product.name})}">
+                    <a style="text-decoration: none;" th:href="@{/get-product/{id}(id=${product.getId()})}">
                         <h3 class="text-primary" th:text="${product.name}"></h3>
                     </a>
                     <span class="text-info" th:text="${product.price}"></span>

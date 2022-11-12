@@ -2,6 +2,7 @@ package edu.azati.shop.controller;
 
 import edu.azati.shop.entity.Manufacturer;
 import edu.azati.shop.entity.Product;
+import edu.azati.shop.enums.ProductCategory;
 import edu.azati.shop.services.ManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,6 +69,7 @@ public class ManufacturerController {
     public String showManufacturerProducts(@PathVariable("id") long id, Model model) {
         List<Product> products = manufacturerService.getManufacturerProducts(id);
         model.addAttribute("products", products);
+        model.addAttribute("categories", ProductCategory.values());
         return "products";
     }
 }
