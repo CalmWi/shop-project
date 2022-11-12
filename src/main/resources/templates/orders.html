@@ -16,6 +16,7 @@
 </head>
 <body class="bg-light">
 <header th:insert="header::header"></header>
+<div class="d-flex py-5">
 <div class="container" th:switch="${orders}">
   <h2 class="text-primary py-4" th:case="null">No orders yet!</h2>
   <div th:case="*">
@@ -38,6 +39,8 @@
     </table>
   </div>
 </div>
+</div>
 <div th:insert="subfooter::subfooter"></div>
+<div th:insert="footer::footer"></div>
 </body>
 </html>

@@ -16,6 +16,7 @@
 </head>
 <body class="bg-light">
 <header th:insert="header::header"></header>
+<div class="d-flex py-5">
 <div  class="container" th:switch="${stores}">
   <h2 class="text-primary py-4" th:case="null">No stores yet!</h2>
   <div th:case="*">
@@ -41,6 +42,8 @@
   </div>
   <p><a class="btn btn-info" href="/signup-store">Add a new store</a></p>
 </div>
+</div>
 <div th:insert="subfooter::subfooter"></div>
+<div th:insert="footer::footer"></div>
 </body>
 </html>
