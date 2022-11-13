@@ -21,6 +21,26 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/register")
+    public String registerUser(Model model) {
+        return "register";
+    }
+
+    @GetMapping("/login")
+    public String loginUser(Model model) {
+        return "login";
+    }
+
+    @GetMapping("/account")
+    public String showUserAccount(Model model) {
+        return "account";
+    }
+
+    @GetMapping("/account/details")
+    public String showAccountDetails(Model model) {
+        return "account-details";
+    }
+
     @GetMapping("/users")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
