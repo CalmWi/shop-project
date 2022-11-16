@@ -32,8 +32,8 @@
       <tbody>
       <tr th:each="order : ${orders}">
         <td th:text="${order.id}"></td>
-        <td><a th:href="@{/show-order-products/{id}(id=${order.id})}">Show Products</a></td>
-        <td><a th:href="@{/generate-order-pdf/{id}(id=${order.id})}">Get Report</a></td>
+        <td><a th:href="@{/api/show-order-products/{id}(id=${order.id})}">Show Products</a></td>
+        <td><a th:href="@{/api/generate-order-pdf/{id}(id=${order.id})}">Get Report</a></td>
       </tr>
       </tbody>
     </table>

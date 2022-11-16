@@ -33,14 +33,14 @@
       <tbody>
       <tr th:each="manufacturer : ${manufacturers}">
         <td th:text="${manufacturer.name}"></td>
-        <td><a th:href="@{/edit-manufacturer/{id}(id=${manufacturer.id})}">Edit</a></td>
-        <td><a th:href="@{/delete-manufacturer/{id}(id=${manufacturer.id})}">Delete</a></td>
-        <td><a th:href="@{/show-manufacturer-products/{id}(id=${manufacturer.id})}">Show Products</a></td>
+        <td><a th:href="@{/api/edit-manufacturer/{id}(id=${manufacturer.id})}">Edit</a></td>
+        <td><a th:href="@{/api/delete-manufacturer/{id}(id=${manufacturer.id})}">Delete</a></td>
+        <td><a th:href="@{/api/show-manufacturer-products/{id}(id=${manufacturer.id})}">Show Products</a></td>
       </tr>
       </tbody>
     </table>
   </div>
-  <p><a class="btn btn-info" href="/signup-manufacturer">Add a new manufacturer</a></p>
+  <p><a class="btn btn-info" href="/api/signup-manufacturer">Add a new manufacturer</a></p>
 </div>
 </div>
 <div th:insert="subfooter::subfooter"></div>

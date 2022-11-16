@@ -19,7 +19,7 @@
 <header th:insert="header::header"></header>
 <div class="container justify-content-center align-items-center">
     <div class="py-4"><h2 class="text-primary">Add new manufacturer </h2></div>
-    <form action="#" th:action="@{/add-manufacturer}" th:object="${manufacturer}" method="post">
+    <form action="#" th:action="@{/api/add-manufacturer}" th:object="${manufacturer}" method="post">
         <div class="form-group mb-4 row has-error">
             <label for="name" class="col-1 col-form-label">Name</label>
             <div class="col-3">

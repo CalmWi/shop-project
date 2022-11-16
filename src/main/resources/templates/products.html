@@ -34,7 +34,7 @@
 <header th:insert="header::header"></header>
 <div class="d-flex">
     <div class="d-flex align-items-center justify-content-center" style="position: relative; width: 100%; overflow: hidden; height: 300px" >
-        <img style="width: 100%; position: absolute" src="../images/header.jpg" >
+        <img style="width: 100%; position: absolute" src="../images/header.jpg"/>
         <div class="container text-uppercase text-white fs-1 fw-bold" style="position: absolute; padding-left: 50px;">products</div>
     </div>
 </div>
@@ -42,7 +42,7 @@
     <div class="d-flex flex-wrap row" style="width: 80%; position: relative">
         <nav class="nav nav-before d-flex fs-4 p-0 justify-content-center align-items-center">
             <div class="nav p-2" th:each="category : ${categories}">
-                <a th:href="@{/get-products-category/{category}(category=${category.name()})}" class="nav-link text-secondary active" th:text="${category.name()}"></a>
+                <a th:href="@{/api/get-products-category/{category}(category=${category.name()})}" class="nav-link text-secondary active" th:text="${category.name()}"></a>
             </div>
         </nav>
     </div>
@@ -55,7 +55,7 @@
                     <img class="img-fluid" th:src="@{${'/image/display/'+ product.photoTitle}}"/>
                 </div>
                 <div class="d-flex flex-column p-3 justify-content-center align-items-center">
-                    <a style="text-decoration: none;" th:href="@{/get-product/{id}(id=${product.getId()})}">
+                    <a style="text-decoration: none;" th:href="@{/api/get-product/{id}(id=${product.getId()})}">
                         <h3 class="text-primary" th:text="${product.name}"></h3>
                     </a>
                     <span class="text-info" th:text="${product.price}"></span>

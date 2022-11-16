@@ -36,13 +36,13 @@
         <td th:text="${user.name}"></td>
         <td th:text="${user.surname}"></td>
         <td th:text="${user.patronymic}"></td>
-        <td><a th:href="@{/edit-user/{id}(id=${user.id})}">Edit</a></td>
-        <td><a th:href="@{/delete-user/{id}(id=${user.id})}">Delete</a></td>
+        <td><a th:href="@{/api/edit-user/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{/api/delete-user/{id}(id=${user.id})}">Delete</a></td>
       </tr>
       </tbody>
     </table>
   </div>
-  <p><a class="btn btn-info" href="/signup-user">Add a new user</a></p>
+  <p><a class="btn btn-info" href="/api/signup-user">Add a new user</a></p>
 </div>
 </div>
 <div th:insert="subfooter::subfooter"></div>

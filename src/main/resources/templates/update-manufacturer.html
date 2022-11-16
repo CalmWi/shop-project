@@ -20,7 +20,7 @@
 <div class="container justify-content-center align-items-center">
     <div class="py-4"><h2 class="text-primary">Update manufacturer </h2></div>
     <form action="#"
-          th:action="@{/update-manufacturer/{id}(id=${manufacturer.id})}"
+          th:action="@{/api/update-manufacturer/{id}(id=${manufacturer.id})}"
           th:object="${manufacturer}"
           method="post">
         <div class="form-group mb-4 row has-error">

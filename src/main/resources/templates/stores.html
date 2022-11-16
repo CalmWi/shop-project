@@ -33,9 +33,9 @@
       <tbody>
       <tr th:each="store : ${stores}">
         <td th:text="${store.id}"></td>
-        <td><a th:href="@{/edit-store/{id}(id=${store.id})}">Edit</a></td>
-        <td><a th:href="@{/delete-store/{id}(id=${store.id})}">Delete</a></td>
-        <td><a th:href="@{/show-store-products/{id}(id=${store.id})}">Show Products</a></td>
+        <td><a th:href="@{/api/edit-store/{id}(id=${store.id})}">Edit</a></td>
+        <td><a th:href="@{/api/delete-store/{id}(id=${store.id})}">Delete</a></td>
+        <td><a th:href="@{/api/show-store-products/{id}(id=${store.id})}">Show Products</a></td>
       </tr>
       </tbody>
     </table>
