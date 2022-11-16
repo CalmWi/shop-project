@@ -1,14 +1,18 @@
 package edu.azati.shop.services;
 
+import edu.azati.shop.dto.UserDto;
 import edu.azati.shop.entity.User;
 import edu.azati.shop.enums.UserRole;
+import edu.azati.shop.error.UserAlreadyExistException;
 import edu.azati.shop.repository.UserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -64,4 +68,24 @@ public class UserService {
         LOG.info("Updated user with id = {}", id);
     }
 
+    public User registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
+        if (emailExists(userDto.getEmail())) {
+            throw new UserAlreadyExistException("There is an account with that email address: "
+                    + userDto.getEmail());
+        }
+        User user = new User();
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(userDto.getPassword());
+        user.setPassword(encodedPassword);
+        user.setEmail(userDto.getEmail());
+        user.setUserRole(UserRole.Customer);
+
+        return userRepo.save(user);
+    }
+
+    private boolean emailExists(String email) {
+        return userRepo.findByEmail(email) != null;
+    }
 }

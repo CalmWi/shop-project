@@ -22,7 +22,7 @@ import java.util.List;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "name")
@@ -31,6 +31,10 @@ public class User implements Serializable {
     private String surname;
     @Column(name = "patronymic")
     private String patronymic;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
+    private String password;
     @Enumerated(EnumType.STRING)
     @Column(name = "userRole")
     private UserRole userRole;
