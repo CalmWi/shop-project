@@ -1,23 +1,20 @@
 package edu.azati.shop.controller;
 
-import edu.azati.shop.dto.UserDto;
 import edu.azati.shop.entity.User;
-import edu.azati.shop.error.UserAlreadyExistException;
 import edu.azati.shop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/api")
 public class UserController {
     @Autowired
     UserService userService;
@@ -29,27 +26,32 @@ public class UserController {
 
 
     @GetMapping("/account")
+    @PreAuthorize("hasAuthority('read')")
     public String showUserAccount(Model model) {
         return "account";
     }
 
     @GetMapping("/account/details")
+    @PreAuthorize("hasAuthority('read')")
     public String showAccountDetails(Model model) {
         return "account-details";
     }
 
     @GetMapping("/users")
+    @PreAuthorize("hasAuthority('write')")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
 
     @GetMapping("/signup-user")
+    @PreAuthorize("hasAuthority('write')")
     public String showSignUpForm(User user) {
         return "add-user";
     }
 
     @PostMapping("/add-user")
+    @PreAuthorize("hasAuthority('write')")
     public String addUser(@Validated User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-user";
@@ -60,6 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/edit-user/{id}")
+    @PreAuthorize("hasAuthority('write')")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
@@ -67,6 +70,7 @@ public class UserController {
     }
 
     @PostMapping("/update-user/{id}")
+    @PreAuthorize("hasAuthority('write')")
     public String updateUser(@PathVariable("id") long id, @Validated User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(id);
@@ -77,39 +81,10 @@ public class UserController {
     }
 
     @GetMapping("/delete-user/{id}")
+    @PreAuthorize("hasAuthority('write')")
     public String deleteUser(@PathVariable("id") long id, Model model) {
         User user = userService.getUserById(id);
         userService.deleteUserById(user.getId());
         return "redirect:/users";
-    }
-
-    @GetMapping("/login")
-    public String loginUser(Model model) {
-        return "login";
-    }
-
-    @GetMapping("/success-register")
-    public String successUser(Model model) {
-        return "success-register";
-    }
-
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
-        return "register";
-    }
-
-    @PostMapping("/process-register")
-    public ModelAndView registerUserAccount(
-            @ModelAttribute("user") @Valid UserDto userDto) {
-        ModelAndView mav = new ModelAndView();
-        try {
-            User registered = userService.registerNewUserAccount(userDto);
-        } catch (UserAlreadyExistException uaeEx) {
-            mav.addObject("message", "An account for that username/email already exists.");
-            return mav;
-        }
-        return new ModelAndView("success-register", "user", userDto);
     }
 }

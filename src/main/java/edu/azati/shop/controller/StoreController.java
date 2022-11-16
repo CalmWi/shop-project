@@ -4,6 +4,7 @@ import edu.azati.shop.entity.Product;
 import edu.azati.shop.entity.Store;
 import edu.azati.shop.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,26 +12,31 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/api")
 public class StoreController {
     @Autowired
     StoreService storeService;
 
     @GetMapping("/stores")
-    public String showManufacturer(Model model) {
+    @PreAuthorize("hasAuthority('write')")
+    public String showStore(Model model) {
         model.addAttribute("stores", storeService.getAllStores());
         return "stores";
     }
 
     @GetMapping("/signup-store")
+    @PreAuthorize("hasAuthority('write')")
     public String showSignUpForm(Store store) {
         return "add-store";
     }
 
     @PostMapping("/add-store")
+    @PreAuthorize("hasAuthority('write')")
     public String addStore(@Validated Store store, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-store";
@@ -41,6 +47,7 @@ public class StoreController {
     }
 
     @GetMapping("/edit-store/{id}")
+    @PreAuthorize("hasAuthority('write')")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Store store = storeService.getStoreById(id);
         model.addAttribute("manufacturer", store);
@@ -48,6 +55,7 @@ public class StoreController {
     }
 
     @PostMapping("/update-store/{id}")
+    @PreAuthorize("hasAuthority('write')")
     public String updateStore(@PathVariable("id") long id, @Validated Store store, BindingResult result, Model model) {
         if (result.hasErrors()) {
             store.setId(id);
@@ -58,6 +66,7 @@ public class StoreController {
     }
 
     @GetMapping("/delete-store/{id}")
+    @PreAuthorize("hasAuthority('write')")
     public String deleteStore(@PathVariable("id") long id, Model model) {
         Store store = storeService.getStoreById(id);
         storeService.deleteStoreById(store.getId());
@@ -65,7 +74,8 @@ public class StoreController {
     }
 
     @GetMapping("/show-store-products/{id}")
-    public String showManufacturerProducts(@PathVariable("id") long id, Model model) {
+    @PreAuthorize("hasAuthority('write')")
+    public String showStoreProducts(@PathVariable("id") long id, Model model) {
         List<Product> products = storeService.getStoreById(id).getProducts();
         model.addAttribute("products", products);
         return "products";

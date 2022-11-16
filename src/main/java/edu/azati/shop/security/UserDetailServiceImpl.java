@@ -27,5 +27,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
         return SecuriryUser.fromUser(user);
     }
-
 }

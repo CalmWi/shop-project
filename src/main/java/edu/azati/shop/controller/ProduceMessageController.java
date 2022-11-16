@@ -21,15 +21,6 @@ public class ProduceMessageController {
     @Autowired
     JmsProducer jmsProducer;
 
-    /*@PostMapping("/send-user")
-    public String sendMessage(@Validated User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "send-user";
-        }
-
-        jmsProducer.sendMessage(user);
-        return "users";
-    }*/
     @GetMapping("/user")
     public String showForm(User user) {
         return "send-user";
