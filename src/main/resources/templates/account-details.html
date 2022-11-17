@@ -34,7 +34,7 @@
 <header th:insert="header::header"></header>
 <div class="d-flex">
     <div class="d-flex align-items-center justify-content-center" style="position: relative; width: 100%; overflow: hidden; height: 300px" >
-        <img style="width: 100%; position: absolute" src="../images/header.jpg" >
+        <img style="width: 100%; position: absolute" src="../images/header.jpg" />
         <div class="container text-uppercase text-white fs-1 fw-bold" style="position: absolute; padding-left: 50px;">account details</div>
     </div>
 </div>
@@ -42,17 +42,17 @@
     <div class="d-flex flex-wrap row" style="width: 80%; position: relative">
         <nav class="nav nav-before d-flex fs-4 p-0 justify-content-center align-items-center">
             <div class="nav p-2">
-                <a href="/orders" class="nav-link text-secondary active">Orders</a>
+                <a href="/api/orders" class="nav-link text-secondary active">Orders</a>
             </div>
             <div class="nav p-2">
                 <a href="" class="nav-link text-secondary active">Payment</a>
             </div>
             <div class="nav p-2">
-                <a href="/account/details" class="nav-link text-secondary active">Account Details</a>
+                <a href="/api/account/details" class="nav-link text-secondary active">Account Details</a>
             </div>
-            <div class="nav p-2">
-                <a href="/login" class="nav-link text-secondary active">Logout</a>
-            </div>
+            <form action="/auth/logout" method="post">
+                <button class="text-secondary" style="border: none; background: none; " type="submit">Logout</button>
+            </form>
         </nav>
     </div>
 </div>
@@ -120,3 +120,6 @@
 <div th:insert="footer::footer"></div>
 </body>
 </html>
+
+
+

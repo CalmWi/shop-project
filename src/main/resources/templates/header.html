@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,8 +34,11 @@
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Поиск">
                             <button class="btn btn-outline-info" type="submit">Search</button>
                         </form>
-                        <div class="d-flex col-auto">
-                        <a href="/auth/login" class="nav-link text-info fs-4">My Account</a>
+                        <div sec:authorize="isAuthenticated()" class="d-flex col-auto">
+                            <a href="/api/account" class="nav-link text-info fs-4">My Account</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()" class="d-flex col-auto">
+                            <a href="/auth/login" class="nav-link text-info fs-4">My Account</a>
                         </div>
                     </div>
                 </nav>
@@ -48,11 +51,33 @@
         <div class="container">
             <div class="d-flex flex-wrap ">
                 <ul class="nav text-small">
+                    <li><a sec:authorize="isAnonymous()" href="/api/" class="nav-link a-hover ">Home</a></li>
+                    <li><a sec:authorize="hasAuthority('read')" href="/api/" class="nav-link a-hover ">Home</a></li>
+                    <li><a sec:authorize="isAnonymous()" href="/api/manufacturers" class="nav-link a-hover ">Manufacturers</a></li>
+                    <li><a sec:authorize="hasAuthority('read')" href="/api/manufacturers" class="nav-link a-hover ">Manufacturers</a></li>
+                    <li><a sec:authorize="isAnonymous()" href="/api/products" class="nav-link a-hover ">Products</a></li>
+                    <li><a sec:authorize="hasAuthority('read')" href="/api/products" class="nav-link a-hover ">Products</a></li>
+                    <li><a sec:authorize="hasAuthority('write')" href="/api/orders" class="nav-link a-hover">Orders</a></li>
+                    <li><a sec:authorize="hasAuthority('write')" href="/api/users" class="nav-link a-hover ">Users</a></li>
+                    <li><a sec:authorize="isAnonymous()" href="#" class="nav-link a-hover">About</a></li>
+                    <li><a sec:authorize="hasAuthority('read')" href="#" class="nav-link a-hover">About</a></li>
+                    <li><a sec:authorize="isAnonymous()" href="#" class="nav-link a-hover ">Contact</a></li>
+                    <li><a sec:authorize="hasAuthority('read')" href="#" class="nav-link a-hover ">Contact</a></li>
+                </ul>
+                <!--<ul sec:authorize="isAnonymous()" class="nav text-small">
+                    <li><a href="/api/" class="nav-link a-hover ">Home</a></li>
                     <li><a href="/api/manufacturers" class="nav-link a-hover ">Manufacturers</a></li>
                     <li><a href="/api/products" class="nav-link a-hover ">Products</a></li>
-                    <li><a href="/api/orders" class="nav-link a-hover">Orders</a></li>
-                    <li><a href="/api/users" class="nav-link a-hover ">Users</a></li>
+                    <li><a href="#" class="nav-link a-hover">About</a></li>
+                    <li><a href="#" class="nav-link a-hover ">Contact</a></li>
                 </ul>
+                <ul sec:authorize="hasAuthority('read')" class="nav text-small">
+                    <li><a href="/api/" class="nav-link a-hover ">Home</a></li>
+                    <li><a href="/api/manufacturers" class="nav-link a-hover ">Manufacturers</a></li>
+                    <li><a href="/api/products" class="nav-link a-hover ">Products</a></li>
+                    <li><a href="#" class="nav-link a-hover">About</a></li>
+                    <li><a href="#" class="nav-link a-hover ">Contact</a></li>
+                </ul>-->
             </div>
         </div>
     </div>

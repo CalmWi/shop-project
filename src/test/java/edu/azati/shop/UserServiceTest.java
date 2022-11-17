@@ -51,21 +51,21 @@ public class UserServiceTest {
 
     @Test
     public void userServiceGetUserByIdTest() {
-        User user = new User(7, "asd", "zxc", "dwdq", UserRole.Customer, null);
+        User user = new User(7, "asd", "zxc", "dwdq","wejfowe", "qwmdo", UserRole.Customer, null);
         when(userService.getUserById(7)).thenReturn(user);
         Assert.assertEquals(7, user.getId());
     }
 
     @Test
     public void userServiceGetUserByNameTest() {
-        User user = new User(7, "asd", "zxc", "dwdq", UserRole.Customer, null);
+        User user = new User(7, "asd", "zxc", "dwdq","wejfowe", "qwmdo", UserRole.Customer, null);
         when(userService.getUserByName("asd")).thenReturn(user);
         Assert.assertEquals("asd", user.getName());
     }
 
     @Test
     public void userServiceGetUserBySurnameTest() {
-        User user = new User(7, "asd", "zxc", "dwdq", UserRole.Customer, null);
+        User user = new User(7, "asd", "zxc", "dwdq","wejfowe", "qwmdo", UserRole.Customer, null);
         when(userService.getUserBySurname("zxc")).thenReturn(user);
         Assert.assertEquals("zxc", user.getSurname());
     }

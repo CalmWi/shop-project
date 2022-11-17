@@ -48,10 +48,12 @@
         <a href="" class="nav-link text-secondary active">Payment</a>
       </div>
       <div class="nav p-2">
-        <a href="/api/account/details" class="nav-link text-secondary active">Account Details</a>
+        <a th:href="@{/api/account/details}" class="nav-link text-secondary active">Account Details</a>
       </div>
       <div class="nav p-2">
-        <a href="/auth/logout" class="nav-link text-secondary active">Logout</a>
+        <form action="/auth/logout" method="post">
+          <button class="text-secondary" style="border: none; background: none; " type="submit">Logout</button>
+        </form>
       </div>
     </nav>
   </div>

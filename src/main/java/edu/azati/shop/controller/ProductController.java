@@ -25,7 +25,6 @@ public class ProductController {
     OrderService orderService;
 
     @GetMapping("/products")
-    @PreAuthorize("hasAuthority('read')")
     public String showProducts(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
@@ -33,7 +32,6 @@ public class ProductController {
         return "products";
     }
     @GetMapping("/get-products-category/{category}")
-    @PreAuthorize("hasAuthority('read')")
     public String showProductsByCategory(@PathVariable("category") String category,Model model) {
         List<Product> products = productService.getAllProductsByCategory(category);
         model.addAttribute("products", products);
@@ -85,7 +83,6 @@ public class ProductController {
     }
 
     @GetMapping("/get-product/{id}")
-    @PreAuthorize("hasAuthority('read')")
     public String getProduct(@PathVariable("id") long id, Model model) {
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);

@@ -24,7 +24,6 @@ public class ManufacturerController {
     ManufacturerService manufacturerService;
 
     @GetMapping("/manufacturers")
-    @PreAuthorize("hasAuthority('read')")
     public String showManufacturers(Model model) {
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
         return "manufacturers";
@@ -75,7 +74,6 @@ public class ManufacturerController {
     }
 
     @GetMapping("/show-manufacturer-products/{id}")
-    @PreAuthorize("hasAuthority('read')")
     public String showManufacturerProducts(@PathVariable("id") long id, Model model) {
         List<Product> products = manufacturerService.getManufacturerProducts(id);
         model.addAttribute("products", products);
