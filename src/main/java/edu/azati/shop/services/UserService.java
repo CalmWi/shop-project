@@ -8,6 +8,7 @@ import edu.azati.shop.repository.UserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -84,7 +85,12 @@ public class UserService {
 
         return userRepo.save(user);
     }
-
+    public User getUserByEmail(String email){
+        if(emailExists(email)){
+            return userRepo.findByEmail(email);
+        }
+        return  null;
+    }
     private boolean emailExists(String email) {
         return userRepo.findByEmail(email) != null;
     }
