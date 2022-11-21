@@ -38,7 +38,7 @@
                             <a href="/api/account" class="nav-link text-info fs-4">My Account</a>
                         </div>
                         <div sec:authorize="isAnonymous()" class="d-flex col-auto">
-                            <a href="/auth/login" class="nav-link text-info fs-4">My Account</a>
+                            <a href="/api/auth/login" class="nav-link text-info fs-4">My Account</a>
                         </div>
                     </div>
                 </nav>
@@ -64,20 +64,6 @@
                     <li><a sec:authorize="isAnonymous()" href="#" class="nav-link a-hover ">Contact</a></li>
                     <li><a sec:authorize="hasAuthority('read')" href="#" class="nav-link a-hover ">Contact</a></li>
                 </ul>
-                <!--<ul sec:authorize="isAnonymous()" class="nav text-small">
-                    <li><a href="/api/" class="nav-link a-hover ">Home</a></li>
-                    <li><a href="/api/manufacturers" class="nav-link a-hover ">Manufacturers</a></li>
-                    <li><a href="/api/products" class="nav-link a-hover ">Products</a></li>
-                    <li><a href="#" class="nav-link a-hover">About</a></li>
-                    <li><a href="#" class="nav-link a-hover ">Contact</a></li>
-                </ul>
-                <ul sec:authorize="hasAuthority('read')" class="nav text-small">
-                    <li><a href="/api/" class="nav-link a-hover ">Home</a></li>
-                    <li><a href="/api/manufacturers" class="nav-link a-hover ">Manufacturers</a></li>
-                    <li><a href="/api/products" class="nav-link a-hover ">Products</a></li>
-                    <li><a href="#" class="nav-link a-hover">About</a></li>
-                    <li><a href="#" class="nav-link a-hover ">Contact</a></li>
-                </ul>-->
             </div>
         </div>
     </div>

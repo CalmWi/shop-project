@@ -34,7 +34,7 @@
 <header th:insert="header::header"></header>
 <div class="d-flex">
     <div class="d-flex align-items-center justify-content-center" style="position: relative; width: 100%; overflow: hidden; height: 300px" >
-        <img style="width: 100%; position: absolute" src="../images/header.jpg" />
+        <img style="width: 100%; position: absolute" src="../../images/header.jpg" />
         <div class="container text-uppercase text-white fs-1 fw-bold" style="position: absolute; padding-left: 50px;">account details</div>
     </div>
 </div>
@@ -50,7 +50,7 @@
             <div class="nav p-2">
                 <a href="/api/account/details" class="nav-link text-secondary active">Account Details</a>
             </div>
-            <form action="/auth/logout" method="post">
+            <form action="/api/auth/logout" method="post">
                 <button class="text-secondary" style="border: none; background: none; " type="submit">Logout</button>
             </form>
         </nav>

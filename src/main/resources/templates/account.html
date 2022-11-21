@@ -42,7 +42,7 @@
   <div class="d-flex flex-wrap row" style="width: 80%; position: relative">
     <nav class="nav nav-before d-flex fs-4 p-0 justify-content-center align-items-center">
       <div class="nav p-2">
-        <a href="/orders" class="nav-link text-secondary active">Orders</a>
+        <a href="api/orders" class="nav-link text-secondary active">Orders</a>
       </div>
       <div class="nav p-2">
         <a href="" class="nav-link text-secondary active">Payment</a>
@@ -51,7 +51,7 @@
         <a th:href="@{/api/account/details}" class="nav-link text-secondary active">Account Details</a>
       </div>
       <div class="nav p-2">
-        <form action="/auth/logout" method="post">
+        <form action="/api/auth/logout" method="post">
           <button class="text-secondary" style="border: none; background: none; " type="submit">Logout</button>
         </form>
       </div>
