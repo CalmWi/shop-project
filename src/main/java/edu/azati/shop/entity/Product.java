@@ -2,7 +2,6 @@ package edu.azati.shop.entity;
 
 import edu.azati.shop.enums.ProductCategory;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -16,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "products")
 public class Product {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "name")

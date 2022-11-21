@@ -19,12 +19,14 @@ public class SecurityUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
+
     public SecurityUser(String username, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+                        Collection<? extends GrantedAuthority> authorities) {
         this.name = username;
         this.password = password;
         this.authorities = authorities;
     }
+
     @Override
     public String getPassword() {
         return password;
@@ -54,6 +56,7 @@ public class SecurityUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

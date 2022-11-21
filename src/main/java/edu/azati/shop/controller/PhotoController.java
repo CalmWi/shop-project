@@ -1,7 +1,6 @@
 package edu.azati.shop.controller;
 
 import edu.azati.shop.entity.Photo;
-import edu.azati.shop.entity.User;
 import edu.azati.shop.services.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Base64;
 
 @Controller
 public class PhotoController {

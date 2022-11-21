@@ -2,13 +2,10 @@ package edu.azati.shop.entity;
 
 import edu.azati.shop.enums.UserRole;
 import lombok.*;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter

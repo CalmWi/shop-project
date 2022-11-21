@@ -3,13 +3,10 @@ package edu.azati.shop.controller;
 import edu.azati.shop.dto.UserDto;
 import edu.azati.shop.entity.User;
 import edu.azati.shop.error.UserAlreadyExistException;
-import edu.azati.shop.security.SecurityUser;
 import edu.azati.shop.security.jwt.JwtTokenProvider;
 import edu.azati.shop.services.UserService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,7 +35,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/process-login")
-    public ModelAndView authenticateUser(@ModelAttribute("user") @Valid @NotNull UserDto userDto, HttpServletResponse response){
+    public ModelAndView authenticateUser(@ModelAttribute("user") @Valid @NotNull UserDto userDto, HttpServletResponse response) {
 
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -52,15 +49,16 @@ public class AuthController {
             cookie.setMaxAge(1 * 24 * 60 * 60);
             response.addCookie(cookie);
 
-        }catch (AuthenticationException e){
+        } catch (AuthenticationException e) {
             ModelAndView mav = new ModelAndView();
             mav.addObject("message", "Invalid email/password combination");
             return mav;
         }
         return new ModelAndView("success-login", "user", userDto);
     }
+
     @PostMapping("/logout")
-    public String logout(HttpServletResponse response){
+    public String logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("jwt", null);
         cookie.setMaxAge(0);
         cookie.setHttpOnly(true);
@@ -68,6 +66,7 @@ public class AuthController {
         response.addCookie(cookie);
         return "redirect:/api/auth/login";
     }
+
     @GetMapping("/login")
     public String loginUser(Model model) {
         UserDto userDto = new UserDto();
@@ -99,6 +98,7 @@ public class AuthController {
         }
         return new ModelAndView("success-register", "user", userDto);
     }
+
     @GetMapping("/success-login")
     public String successLogin(Model model) {
         return "success-login";

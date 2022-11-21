@@ -37,11 +37,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 Cookie session =
                         Arrays.stream(allCookies).filter(x -> x.getName().equals("jwt"))
                                 .findFirst().orElse(null);
-                if(session!=null){
+                if (session != null) {
                     jwt = session.getValue();
                 }
             }
-            System.out.println("jwt:"+jwt);
+            System.out.println("jwt:" + jwt);
             if (jwt != null && jwtTokenProvider.validateJwtToken(jwt)) {
                 String username = jwtTokenProvider.getUserNameFromJwtToken(jwt);
 

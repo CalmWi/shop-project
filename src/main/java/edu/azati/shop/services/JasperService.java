@@ -15,8 +15,8 @@ public class JasperService {
     public void generatePdf(List<Product> products) throws FileNotFoundException, JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(products);
         JasperReport jasperReport = JasperCompileManager.compileReport(new FileInputStream("src/main/resources/orderReport.jrxml"));
-        HashMap<String,Object> map = new HashMap<>();
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,map,beanCollectionDataSource);
-        JasperExportManager.exportReportToPdfFile(jasperPrint,"report.pdf");
+        HashMap<String, Object> map = new HashMap<>();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, beanCollectionDataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "report.pdf");
     }
 }

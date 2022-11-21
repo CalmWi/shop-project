@@ -7,12 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,9 +24,10 @@ public class SecurityConfig {
 
     @Autowired
     UserDetailServiceImpl userDetailService;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        String[] staticResources  =  {
+        String[] staticResources = {
                 "/css/**",
                 "/images/**"
         };
@@ -38,9 +37,9 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers(staticResources).permitAll()
-                .antMatchers("/api/","/api/products","/api/manufacturers",
-                        "/api/product","/api/about","/api/contact","/image/display/{title}",
-                        "/api/auth/**", "/api/get-product/{id}","/api/show-manufacturer-products/{id}",
+                .antMatchers("/api/", "/api/products", "/api/manufacturers",
+                        "/api/product", "/api/about", "/api/contact", "/image/display/{title}",
+                        "/api/auth/**", "/api/get-product/{id}", "/api/show-manufacturer-products/{id}",
                         "/api/get-products-category/{category}").permitAll()
                 .anyRequest()
                 .authenticated();
@@ -51,6 +50,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -70,6 +70,7 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
+
     @Bean
     protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

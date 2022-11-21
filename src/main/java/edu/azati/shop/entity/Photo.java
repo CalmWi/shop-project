@@ -5,6 +5,7 @@ import org.bson.types.Binary;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class Photo {
     private String title;
     private Binary image;
 
-    public Photo(String title){
+    public Photo(String title) {
         this.title = title;
     }
 }

@@ -5,15 +5,16 @@ import edu.azati.shop.enums.ProductCategory;
 import edu.azati.shop.services.OrderService;
 import edu.azati.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -31,13 +32,15 @@ public class ProductController {
         model.addAttribute("categories", ProductCategory.values());
         return "products";
     }
+
     @GetMapping("/get-products-category/{category}")
-    public String showProductsByCategory(@PathVariable("category") String category,Model model) {
+    public String showProductsByCategory(@PathVariable("category") String category, Model model) {
         List<Product> products = productService.getAllProductsByCategory(category);
         model.addAttribute("products", products);
         model.addAttribute("categories", ProductCategory.values());
         return "products";
     }
+
     @GetMapping("/signup-product")
     @PreAuthorize("hasAuthority('write')")
     public String showSignUpForm(Product product) {
